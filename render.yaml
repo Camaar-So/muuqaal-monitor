@@ -1,0 +1,15 @@
+services:
+  - type: web
+    name: muuqaal-monitor
+    runtime: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn app:app
+    envVars:
+      - key: ADMIN_TOKEN
+        generateValue: true
+      - key: PORT
+        value: 5000
+    disk:
+      name: muuqaal-db
+      mountPath: /var/data
+      sizeGB: 1
